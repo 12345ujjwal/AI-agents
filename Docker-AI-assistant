@@ -1,0 +1,60 @@
+import subprocess
+from strands import Agent
+from strands.models.ollama import OllamaModel
+from strands.tools import tool
+
+model = OllamaModel(
+    host="http://127.0.0.1:11434",
+    model_id="gemma4:31b-cloud"
+)
+@tool
+def running_containers():
+    """
+    Lists all currently running Docker containers.
+    """
+
+    result = subprocess.check_output(
+        ["docker","ps","--format","Name: {{.Names}} | Status: {{.Status}}"],
+        text=True
+    )
+    if not result.strip():
+        return "No running containers found."
+    return result
+
+@tool
+def stopped_containers():
+    """
+    Lists all stopped or exited Docker containers.
+    """
+    result = subprocess.check_output(
+        ["docker","ps","-a","--filter","status=exited","--format","Name: {{.Names}} | Status: {{.Status}}"],
+        text=True
+    )
+    if not result.strip():
+        return "No stopped containers found."
+    return result
+
+@tool
+def stop_container(container_name: str):
+    """
+    Stops a running Docker container using container name.
+    """
+    try:
+        result = subprocess.check_output(
+            ["docker", "stop", container_name],
+            text=True
+        )
+        return f"Container '{container_name}' stopped successfully."
+    except subprocess.CalledProcessError:
+        return f"Failed to stop container '{container_name}'. Check container name."
+
+agent = Agent(
+    model=model,
+    tools=[running_containers,stopped_containers,stop_container],
+    system_prompt=""" You are a DevOps AI assistant. You help users manage Docker containers
+    using available tools. Always use tools whenever needed. """
+)
+print("Docker AI Agent Started")
+while True:
+    user = input("\nYou: ")
+    agent(user)
