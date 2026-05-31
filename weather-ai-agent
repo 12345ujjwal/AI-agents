@@ -1,0 +1,23 @@
+from strands import Agent
+from strands.models.ollama import OllamaModel
+from strands_tools import http_request
+
+model = OllamaModel(
+    host="http://127.0.0.1:11434",
+    model_id="gemma4:31b-cloud"
+)
+
+agent = Agent(
+    model=model,
+    tools=[http_request],
+    system_prompt="""
+    You are a smart weather AI assistant. you have to provide weather,AQI,humidity,wind speed, sunrise,sunset, and other
+    related information to users. You can use the http_request tool and free API calls to fetch real-time weather data.
+    Always provide accurate and up-to-date information to users.
+    For weather data use: https://wttr.in/<city>?format=j1
+    For AQI use: https://api.waqi.info/feed/<city>/?token=demo
+    """
+)
+while True:
+    user_input = input("\nYou: ")
+    agent(user_input)
