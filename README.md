@@ -33,3 +33,10 @@ source venv/bin/activate
 pip install strands-agents
 pip install strands-agents-tools
 ```
+
+## 5. Final Step
+Change the directory and clone the code
+```
+cd venv/
+git clone 
+```
