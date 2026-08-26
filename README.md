@@ -42,5 +42,5 @@ git clone https://github.com/12345ujjwal/AI-agents.git
 ```
 Run the code, (for example weather-agent.py)
 ```
-python3 weather-agent.py
+python3 weather-ai-agent.py
 ```
