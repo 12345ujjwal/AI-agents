@@ -35,8 +35,12 @@ pip install strands-agents-tools
 ```
 
 ## 5. Final Step
-Change the directory and clone the code
+Change the directory to venv and clone the code
 ```
 cd venv/
-git clone 
+git clone https://github.com/12345ujjwal/AI-agents.git
+```
+Run the code, (for example weather-agent.py)
+```
+python3 weather-agent.py
 ```
