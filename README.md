@@ -40,7 +40,8 @@ Change the directory to venv and clone the code
 cd venv/
 git clone https://github.com/12345ujjwal/AI-agents.git
 ```
-Run the code, (for example weather-agent.py)
+Run the code, (for example weather-ai-agent.py)
+### NOTE: Make sure to use the available model in .py code
 ```
 python3 weather-ai-agent.py
 ```
