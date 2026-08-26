@@ -32,6 +32,7 @@ python -m venv venv
 source venv/bin/activate
 pip install strands-agents
 pip install strands-agents-tools
+pip install 'strands-agents[ollama]'
 ```
 
 ## 5. Final Step
