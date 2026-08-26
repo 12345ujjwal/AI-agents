@@ -24,3 +24,12 @@ python3 --version
 
 ## 3. Install VS code (Optional)
 Install the VS code for writing and editing code. Its optional, you can use notepad or any word editor to write python code.
+
+## 4. Installing required libraries
+Install the required libraries and framework in virtual environment
+```
+python -m venv venv
+source venv/bin/activate
+pip install strands-agents
+pip install strands-agents-tools
+```
